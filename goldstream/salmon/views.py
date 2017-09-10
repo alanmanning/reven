@@ -9,9 +9,6 @@ from .models import User
 def index(request):
 	return HttpResponse("You're at the index of Salmon")
 
-def login(request):
-	return HttpResponse("You're at the login page")
-
 def register(request):
 	if request.method == 'POST':
 		form = RegisterForm(request.POST)
@@ -21,7 +18,7 @@ def register(request):
 
 	else:
 		form = RegisterForm()
-	return render(request,'salmon/register.html', {'form':form})
+	return render(request,'registration/register.html', {'form':form})
 
 class ShowUsers(generic.ListView):
 	template_name = 'salmon/show_users.html'
@@ -29,6 +26,11 @@ class ShowUsers(generic.ListView):
 
 	def get_queryset(self):
 		return User.objects.all()
+
+########################################################
+##### Views for authorization/authenication system #####
+########################################################
+
 
 # login_required() does the following:
 #  If the user isn’t logged in, redirect to settings.LOGIN_URL, passing the current absolute path in the query string. Example: /accounts/login/?next=/polls/3/.

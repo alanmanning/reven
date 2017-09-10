@@ -1,1 +1,19 @@
--Create a logged-in area
+ADMIN USERNAME: super
+ADMIN PASSWORD: iamtheman
+
+
+Working on creating a login area:
+PROBLEM:
+	-If I use the custom authentication option (in auth.py), then I can't use the 
+	default admin control panel login. The admin control panel login expects a username
+	to be passed, which doesn't work with this the email authentication backend. Can I 
+	add a check to see if the user is a superuser, then it checks via the username? Maybe
+	check to see if username has an '@' in it or something. Maybe check the original question
+	https://stackoverflow.com/questions/37332190/django-login-with-email
+
+
+ISSUES:
+-I had to turn off the URL namespace to get the views from 	url('^', include('django.contrib.auth.urls')),
+to work. Their default names don't use namespace. Could change the default names, or just take out the namespace.
+-Need to make a good test user to try the login system.
+-Need to get the login system to work.

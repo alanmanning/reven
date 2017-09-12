@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'salmon.User'
+AUTH_USER_MODEL = 'salmon.User' #Not a usual dotted pair: this has form <app>.<user_model>
 
 
 # Application definition

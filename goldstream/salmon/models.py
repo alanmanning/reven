@@ -1,17 +1,16 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from .auth import UserManager
 
-
-#class User(AbstractUser):
-#   pass
 
 class User(AbstractUser):
-    USERNAME_FIELD = 'email'
-    email = models.EmailField('email address',unique=True) # changes email to unique and blank to false
-        #already uses an email validator to check email address
+    """User model."""
 
-    # username = models.CharField('username',
-    #     max_length=150,
-    #     unique=False,
-    #     blank=True)
-    REQUIRED_FIELDS = [] # This variable is used in superuser creation only
+    username = None
+    email = models.EmailField(_('email address'), unique=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()

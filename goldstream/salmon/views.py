@@ -14,7 +14,7 @@ def register(request):
 		form = RegisterForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('salmon:show_users')
+			return redirect('show_users')
 
 	else:
 		form = RegisterForm()

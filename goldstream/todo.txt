@@ -1,40 +1,14 @@
-ADMIN USERNAME: super
-ADMIN PASSWORD: iamtheman
+ADMIN USERNAME: alan@alan.com
+ADMIN PASSWORD: goldstreams
 
-THIS IS IT:::
-https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username
-
-Working on creating a login area:
-PROBLEM:
-	-If I use the custom authentication option (in auth.py), then I can't use the
-	default admin control panel login. The admin control panel login expects a username
-	to be passed, which doesn't work with this the email authentication backend. Can I
-	add a check to see if the user is a superuser, then it checks via the username? Maybe
-	check to see if username has an '@' in it or something. Maybe check the original question
-	https://stackoverflow.com/questions/37332190/django-login-with-email
-
-TO TRY:
-  -Get rid of the custom authentication backend.
-  -Instead, change your user model to not require email, use email as username:
-
-#################
- add three lines to your user model:
-
-class MyUser(AbstractUser):
-    USERNAME_FIELD = 'email'
-    email = models.EmailField(_('email address'), unique=True) # changes email to unique and blank to false
-    REQUIRED_FIELDS = [] # removes email from REQUIRED_FIELDS
-
-ADD EMAIL VAlIDATOR. SEE ABSTRACTUSER for implementation with usernames.
-
-Then authenticate(email=email, password=password) works, while authenticate(username=username, password=password) stops working.
-#################
-
-Will then have to change the backend to get superuser registration working...
+DONE:
+-Implemented email login following this article: https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username .
+-Email login for admin site works
+-User registration site also works
 
 
-ISSUES:
--I had to turn off the URL namespace to get the views from 	url('^', include('django.contrib.auth.urls')),
-to work. Their default names don't use namespace. Could change the default names, or just take out the namespace.
--Need to make a good test user to try the login system.
--Need to get the login system to work.
+TODO:
+-Use Django's built-in views for user account management. Get these to work.
+	-Will want to write in the urls myself instead of including them. More explict
+	that way.
+	-Need to make templates.

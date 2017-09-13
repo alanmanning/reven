@@ -30,8 +30,6 @@ class ShowUsers(generic.ListView):
 ########################################################
 ##### Views for authorization/authenication system #####
 ########################################################
-
-
 # login_required() does the following:
 #  If the user isn’t logged in, redirect to settings.LOGIN_URL, passing the current absolute path in the query string. Example: /accounts/login/?next=/polls/3/.
 #  If the user is logged in, execute the view normally. The view code is free to assume the user is logged in.

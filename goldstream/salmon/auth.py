@@ -1,6 +1,6 @@
 from django.contrib.auth.models import BaseUserManager
 
-
+## from https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username
 class UserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 

@@ -103,11 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# User custom authentication backend to enable login with email addresses only.
-# See: https://stackoverflow.com/questions/37332190/django-login-with-email
-#AUTHENTICATION_BACKENDS = ['salmon.auth.EmailBackend']
 
 LOGIN_URL='/login'
+
+#Where a successful login will redirect to afterwards
+LOGIN_REDIRECT_URL ='/myhome'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

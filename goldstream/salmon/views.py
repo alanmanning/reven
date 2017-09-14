@@ -27,12 +27,11 @@ class ShowUsers(generic.ListView):
 	def get_queryset(self):
 		return User.objects.all()
 
+@login_required
+def user_home(request):
+	return render(request,'salmon/userhome.html')
+
+
 ########################################################
 ##### Views for authorization/authenication system #####
 ########################################################
-# login_required() does the following:
-#  If the user isn’t logged in, redirect to settings.LOGIN_URL, passing the current absolute path in the query string. Example: /accounts/login/?next=/polls/3/.
-#  If the user is logged in, execute the view normally. The view code is free to assume the user is logged in.
-@login_required
-def userhome(request):
-	return HttpResponse("You've been successfully logged in and are at the user homepage")

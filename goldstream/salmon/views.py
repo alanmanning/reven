@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
 from django.views import generic
 from .models import User
+from django.contrib.auth import views as auth_views
 
 # Create your views here.
 def index(request):
@@ -26,6 +27,9 @@ class ShowUsers(generic.ListView):
 
 	def get_queryset(self):
 		return User.objects.all()
+
+class MyPasswordChangeView(auth_views.PasswordChangeView):
+	pass
 
 @login_required
 def user_home(request):

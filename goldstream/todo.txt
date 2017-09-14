@@ -9,8 +9,6 @@ DONE:
 
 TODO:
 -Use Django's built-in views for user account management. Get these to work.
-	-Will want to write in the urls myself instead of including them. More explict
-	that way.
 	-Need to make templates.
 	-Add appropriate errors on password change page. Need to get the form errors themselves.
-	 right now I am looking only at the keys
+	 right now I am looking only at the keys.

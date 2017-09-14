@@ -12,3 +12,5 @@ TODO:
 	-Will want to write in the urls myself instead of including them. More explict
 	that way.
 	-Need to make templates.
+	-Add appropriate errors on password change page. Need to get the form errors themselves.
+	 right now I am looking only at the keys

@@ -1,5 +1,5 @@
 ADMIN USERNAME: alan@alan.com
-ADMIN PASSWORD: goldstreams
+ADMIN PASSWORD: testicle
 
 DONE:
 -Implemented email login following this article: https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username .
@@ -9,6 +9,4 @@ DONE:
 
 TODO:
 -Use Django's built-in views for user account management. Get these to work.
-	-Need to make templates.
-	-Add appropriate errors on password change page. Need to get the form errors themselves.
-	 right now I am looking only at the keys.
+	-work on password reset views

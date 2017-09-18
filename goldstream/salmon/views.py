@@ -29,7 +29,31 @@ class ShowUsers(generic.ListView):
 		return User.objects.all()
 
 class MyPasswordChangeView(auth_views.PasswordChangeView):
-	pass
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+
+        I've overwritten this from django.views.generic.edit.FormView, which
+        PasswordChangeView inherits from. I want to set a session variable
+        that will be checked in password change done so that users can't just
+        go to password change done without having done this page first.
+        """
+        form = self.get_form()
+        if form.is_valid():
+            request.session['from_password_change'] = True
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+class MyPasswordChangeDoneView(auth_views.PasswordChangeDoneView):
+    def get(self, request, *args, **kwargs):
+        ok = request.session.pop('from_password_change',False)
+        if ok:
+            context = self.get_context_data(**kwargs)
+            return self.render_to_response(context)
+        else:
+            return redirect('user_home',permanent=True)
 
 @login_required
 def user_home(request):

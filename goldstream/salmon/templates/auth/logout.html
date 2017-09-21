@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% comment Not needed, Django takes care of this. But may be useful later %}
+{% block extrahead %}{{ block.super }}
+    <script type="text/javascript">
+        setTimeout(function() {
+            window.location.href = "/login/";
+        }, 4000);
+    </script>
+{% endblock %}
+{% endcomment %}
+
+{% block content %}
+<p> You have been logged out </p>
+
+{% endblock %}

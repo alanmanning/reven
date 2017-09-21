@@ -9,4 +9,7 @@ DONE:
 
 TODO:
 -Use Django's built-in views for user account management. Get these to work.
-	-work on password reset views
+	-finish password reset. Add html for email, and also page that user sees
+	 upon password reset done.
+	-Add logout link to base template.
+-Attempted login or registration with an email attached to an inactive user: re-send activation email.

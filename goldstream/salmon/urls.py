@@ -18,6 +18,8 @@ urlpatterns = [
     	name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(template_name='auth/logout.html'),
     	name='logout'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
 
 #    url(r'^password_change/$',
 #    	auth_views.PasswordChangeView.as_view(template_name='auth/password_change_form.html'),
@@ -28,9 +30,8 @@ urlpatterns = [
     url(r'^password_change/done/$',
     	views.MyPasswordChangeDoneView.as_view(template_name='auth/password_change_done.html'),
     	name='password_change_done'),
-
     url(r'^password_reset/$',
-    	auth_views.PasswordResetView.as_view(template_name='auth/password_reset_email.html'),
+    	views.MyPasswordResetView.as_view(template_name='auth/password_reset_email.html'),
     	name='password_reset'),
     url(r'^password_reset/done/$',
     	auth_views.PasswordResetDoneView.as_view(template_name='auth/password_reset_done.html'),

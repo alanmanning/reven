@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>{% block title %}My amazing site{% endblock %}</title>
+    {% block extrahead %}{% endblock %}
 </head>
 
 <body>
@@ -9,7 +10,9 @@
         {% block sidebar %}
         <ul>
             <li><a href="/">Home</a></li>
+            <li><a href="/logout">Logout</a></li>
             <li><a href="/admin">Admin</a></li>
+            <li><a href="/register">Register</a></li>
         </ul>
         {% endblock %}
     </div>

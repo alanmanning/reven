@@ -108,6 +108,7 @@ LOGIN_URL='/login'
 
 #Where a successful login will redirect to afterwards
 LOGIN_REDIRECT_URL ='/myhome'
+LOGOUT_REDIRECT_URL ='/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

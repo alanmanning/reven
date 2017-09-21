@@ -1,4 +1,6 @@
 from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils import six
 
 ## from https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username
 class UserManager(BaseUserManager):
@@ -33,3 +35,12 @@ class UserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self._create_user(email, password, **extra_fields)
+
+
+
+# From https://farhadurfahim.github.io/post/django-registration-with-confirmation-email/
+class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
+    def _make_hash_value(self, user, timestamp):
+        return (six.text_type(user.pk) + six.text_type(timestamp)) +  six.text_type(user.is_active)
+
+account_activation_token = AccountActivationTokenGenerator()

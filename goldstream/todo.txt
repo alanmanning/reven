@@ -8,6 +8,9 @@ DONE:
 
 
 TODO:
+-In forms, finish clean_email. Need to check if user with that email already exists.
+If so, need to check if they are authorized. If they aren't, ask to re-send registration
+email
 -Use Django's built-in views for user account management. Get these to work.
 	-finish password reset. Add html for email, and also page that user sees
 	 upon password reset done.

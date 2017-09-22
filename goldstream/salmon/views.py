@@ -19,7 +19,9 @@ def index(request):
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+        print('about to check if form is valid')
         if form.is_valid():
+            print('Form is valid, about to save user')
             user = form.save(commit=False) #don't save the model bound to form, return it
             user.is_active = False
             user.save()

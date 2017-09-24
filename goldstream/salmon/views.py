@@ -4,15 +4,14 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
 from django.views import generic
 from .models import User
+from .auth import send_activation_email
 from django.contrib.auth import views as auth_views
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
 from .auth import account_activation_token
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.core.mail import EmailMessage
-from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_text
+from django.forms import ValidationError
 
-# Create your views here.
+
 def index(request):
     return render(request,'index.html')
 
@@ -20,24 +19,18 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         print('about to check if form is valid')
+        try:
+            valid = form.is_valid()
+        except ValidationError as e:
+            ### You were here. Check for re-registration code and give
+            ### link to send an email
         if form.is_valid():
             print('Form is valid, about to save user')
             user = form.save(commit=False) #don't save the model bound to form, return it
             user.is_active = False
             user.save()
-            current_site = get_current_site(request)
-            message = render_to_string('salmon/activate_email.html', {
-                'user':user, 
-                'domain':current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            mail_subject = 'Activate your XXX account.'
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
+            send_activation_email(request,user)
             return HttpResponse('Please confirm your email address to complete the registration')
-
     else:
         form = RegisterForm()
     return render(request,'auth/register.html', {'form':form})

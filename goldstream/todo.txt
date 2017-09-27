@@ -8,11 +8,9 @@ DONE:
 
 
 TODO:
--In forms, finish clean_email. Need to check if user with that email already exists.
-If so, need to check if they are authorized. If they aren't, ask to re-send registration
-email
--Use Django's built-in views for user account management. Get these to work.
-	-finish password reset. Add html for email, and also page that user sees
-	 upon password reset done.
-	-Add logout link to base template.
--Attempted login or registration with an email attached to an inactive user: re-send activation email.
+-Have made a view to send the activation email. Need to figure out how to make the URL for this.
+ You were at line 28 of views.py. Need to also confirm that send_act_email_view(request,uidb64,token) works
+
+EVENTUALLY:
+-Add Django-axes to disable users after repeated logins. Right now they don't have support
+ for Django-1.11.

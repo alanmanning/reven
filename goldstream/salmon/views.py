@@ -9,7 +9,8 @@ from django.contrib.auth import views as auth_views
 from .auth import account_activation_token
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_text
-from django.forms import ValidationError
+from IPython.core.debugger import Tracer; debug_here = Tracer()
+
 
 
 def index(request):
@@ -19,21 +20,45 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         print('about to check if form is valid')
-        try:
-            valid = form.is_valid()
-        except ValidationError as e:
-            ### You were here. Check for re-registration code and give
-            ### link to send an email
         if form.is_valid():
             print('Form is valid, about to save user')
             user = form.save(commit=False) #don't save the model bound to form, return it
             user.is_active = False
             user.save()
+            ## Here, re-direct to a page that sends the user email
             send_activation_email(request,user)
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = RegisterForm()
+    print(form)
     return render(request,'auth/register.html', {'form':form})
+
+def send_act_email_view(request,uidb64,token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if (user is not None)\
+        and account_activation_token.check_token(user, token)\
+        and (getattr(user,'is_active',None) == False):
+        send_activation_email(request,user)
+        print('An activation email has been sent to ', user.email)
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('User is invalid. No activation email sent.')
+
+
+# else:
+        #     errors = form.errors.as_data()
+        #     try:
+        #         code = errors['email'][0].code
+        #         if code == 'resend_act_email':
+        #             # Get the user
+        #             # re-send the activation email.
+        #     except:
+        #         pass
+
 
 def activate(request, uidb64, token):
     try:

@@ -15,7 +15,7 @@ class RegisterForm(UserCreationForm):
 		try:
 			match = User.objects.get(email=email)
 			if match.is_active:
-				raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
+				raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."),code='email_in_use')
 			else:
 				raise forms.ValidationError(_("This email address already in use but has not been activated."),code='resend_act_email')
 		except User.DoesNotExist:

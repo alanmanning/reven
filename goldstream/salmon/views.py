@@ -4,9 +4,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
 from django.views import generic
 from .models import User
-from .auth import send_activation_email
+from .auth import send_activation_email,account_activation_token, send_activation_email_token, get_send_activation_email_url
 from django.contrib.auth import views as auth_views
-from .auth import account_activation_token
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_text
 from IPython.core.debugger import Tracer; debug_here = Tracer()
@@ -25,9 +24,12 @@ def register(request):
             user = form.save(commit=False) #don't save the model bound to form, return it
             user.is_active = False
             user.save()
-            ## Here, re-direct to a page that sends the user email
-            send_activation_email(request,user)
-            return HttpResponse('Please confirm your email address to complete the registration')
+            print('User saved, calculating url for user')
+            url = get_send_activation_email_url(user)
+            print('Got url: ', url)
+            return redirect(url)
+            # send_activation_email(request,user)
+            # return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = RegisterForm()
     print(form)
@@ -40,11 +42,11 @@ def send_act_email_view(request,uidb64,token):
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if (user is not None)\
-        and account_activation_token.check_token(user, token)\
+        and send_activation_email_token.check_token(user, token)\
         and (getattr(user,'is_active',None) == False):
         send_activation_email(request,user)
         print('An activation email has been sent to ', user.email)
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse(('An activation email has been send to %s' % user.email))
     else:
         return HttpResponse('User is invalid. No activation email sent.')
 

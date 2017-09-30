@@ -8,9 +8,9 @@ DONE:
 
 
 TODO:
--Have made a view to send the activation email. Need to figure out how to make the URL for this.
- You were at line 28 of views.py. Need to also confirm that send_act_email_view(request,uidb64,token) works
+-Add a view to password reset done.
 
 EVENTUALLY:
 -Add Django-axes to disable users after repeated logins. Right now they don't have support
  for Django-1.11.
+ -Test user login

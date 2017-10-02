@@ -21,3 +21,6 @@ class RegisterForm(UserCreationForm):
 		except User.DoesNotExist:
 			#we're ok: this is a new User
 			return email
+
+class BCHAccountForm():
+	pass

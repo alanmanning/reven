@@ -8,7 +8,11 @@ DONE:
 
 
 TODO:
--Add a view to password reset done.
+-Create a new model for BCHAccounts. May as well make a User model. Link this to the User model using a one-to-many relationship.
+ 	-Implement salt and hashing of passwords. Use secret_key.
+ 		-Look up how to get the password text from the hashed value.
+ 	-One specific account. Multiple BCH logins can have one account
+-Create a form for user homepage to add BCHAccounts. Do this from the model?
 
 EVENTUALLY:
 -Add Django-axes to disable users after repeated logins. Right now they don't have support

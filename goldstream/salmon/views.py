@@ -130,6 +130,7 @@ class MyPasswordResetView(auth_views.PasswordResetView):
 
 @login_required
 def user_home(request):
+    print('Got user: ', request.user)
     return render(request,'salmon/userhome.html')
 
 

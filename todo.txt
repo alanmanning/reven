@@ -7,7 +7,13 @@ DONE:
 -User registration site also works
 
 
-TODO:
+FRASER TODO:
+-Figure out the format for the event to pass the dates used
+-Develop logical to download 
+
+
+
+GOLDSTREAM TODO:
 -Create a new model for BCHAccounts. May as well make a User model. Link this to the User model using a one-to-many relationship.
  	-Implement salt and hashing of passwords. Use secret_key.
  		-Look up how to get the password text from the hashed value.

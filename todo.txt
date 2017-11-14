@@ -1,26 +1,44 @@
 ADMIN USERNAME: alan@alan.com
 ADMIN PASSWORD: testicle
 
-DONE:
+REFERENCES:
 -Implemented email login following this article: https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username .
--Email login for admin site works
--User registration site also works
 
 
-FRASER TODO:
--Figure out the format for the event to pass the dates used
--Develop logical to download 
+PEACE (Time series analyzer):
+-Set up as an AWS lambda function
+-Improve the model
 
+FRASER (climate data downloader and provider):
+-Download data from PCCC website. Put this into an SQL database
+-Use remote AWS postgresql database
 
+GOLDSTREAM (Django website project):
+-Use Celery
+-Use Caching
 
-GOLDSTREAM TODO:
+SALMON (BCH analyzer web app):
+-Come up with bootstrap layout. Integrate into the templates. Look at other websites
 -Create a new model for BCHAccounts. May as well make a User model. Link this to the User model using a one-to-many relationship.
  	-Implement salt and hashing of passwords. Use secret_key.
  		-Look up how to get the password text from the hashed value.
  	-One specific account. Multiple BCH logins can have one account
 -Create a form for user homepage to add BCHAccounts. Do this from the model?
+-Figure out how to present the data in a compelling manner
 
+DEPLOYMENT:
+-Work on the settings file for Django staging and deployment options
+-Make a postgresql database on AWS, connect to it over internet
+-Create a Gmail account and use this for the emails, etc.
+-Deploy Goldstream to AWS with Postgresql, Gunicorn, NGinx, etc. (do manually)
+-Use Fabric to automate the deployment process
+
+TESTING:
+-Start using py.test
+-Write unit tests for Goldstream user models, login, etc.
+-Write functional tests for Goldstream web interface using
 EVENTUALLY:
 -Add Django-axes to disable users after repeated logins. Right now they don't have support
  for Django-1.11.
- -Test user login
+-Add testing. Use py.test?
+-Test user login

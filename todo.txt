@@ -6,12 +6,17 @@ REFERENCES:
 
 
 PEACE (Time series analyzer):
--Set up as an AWS lambda function
+-Set up as an AWS lambda function or EC2 instance. Or scientific cloud?
 -Improve the model
 
 FRASER (climate data downloader and provider):
 -Download data from PCCC website. Put this into an SQL database
 -Use remote AWS postgresql database
+
+TO-NAME (BCH account info downloader.):
+-Get this working as a separate python program with an api. Or maybe node.js?
+-Move to AWS. ideally lambda but could be on an EC2 instance
+-Just use selenium for now with a headless browser.
 
 GOLDSTREAM (Django website project):
 -Use Celery
@@ -25,6 +30,8 @@ SALMON (BCH analyzer web app):
  	-One specific account. Multiple BCH logins can have one account
 -Create a form for user homepage to add BCHAccounts. Do this from the model?
 -Figure out how to present the data in a compelling manner
+
+
 
 DEPLOYMENT:
 -Work on the settings file for Django staging and deployment options

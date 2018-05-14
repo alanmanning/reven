@@ -1,9 +1,10 @@
-ADMIN USERNAME: alan@alan.com
-ADMIN PASSWORD: testicle
+QUESTIONS:
+-What determines the order of the unittests that are run?
 
 REFERENCES:
 -Implemented email login following this article: https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username .
 
+-look at implementing models based off of American Department of Labor Bureau and Statistics time use survey
 
 PEACE (Time series analyzer):
 -Set up as an AWS lambda function or EC2 instance. Or scientific cloud?
@@ -21,6 +22,7 @@ TO-NAME (BCH account info downloader.):
 GOLDSTREAM (Django website project):
 -Use Celery
 -Use Caching
+-Change urls that send user info to POSTs.
 
 SALMON (BCH analyzer web app):
 -Come up with bootstrap layout. Integrate into the templates. Look at other websites
@@ -49,3 +51,17 @@ EVENTUALLY:
  for Django-1.11.
 -Add testing. Use py.test?
 -Test user login
+
+##############################################
+##############################################
+
+EMAIL info:
+
+www.mail.com
+Name: Reven reven
+Bday: June 17 1955
+reven_test1
+RevenTest1@
+What city were you born in? -> Athens
+Customer Number329393590
+https://www.lifewire.com/what-are-mail-com-smtp-settings-1170500

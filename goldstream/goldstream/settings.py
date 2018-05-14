@@ -124,7 +124,9 @@ USE_L10N = True
 USE_TZ = True
 
 #During development only
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/home/alan/Dropbox/reven/goldstream/app-messages.txt' # change this to a proper location
 
 
 # Static files (CSS, JavaScript, Images)

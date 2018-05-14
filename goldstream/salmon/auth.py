@@ -30,6 +30,7 @@ def send_activation_email(request,user):
     mail_subject = 'Activate your XXX account.'
     email = EmailMessage(mail_subject, message, to=[user.email])
     email.send()
+    return email
 
 ## from https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username
 class UserManager(BaseUserManager):

@@ -1,6 +1,9 @@
 from django.test import TestCase
+import django.core.mail as dmail
 from django.urls import resolve
-from salmon.models import User
+from .models import User
+from .forms import RegisterForm
+from .auth import get_send_activation_email_url, send_activation_email
 from django.http import HttpRequest
 from django.db.utils import IntegrityError
 #from pdb import set_trace
@@ -11,18 +14,48 @@ from django.db.utils import IntegrityError
 
 
 class UserModelTest(TestCase):
-	def test_user_creation(self):
-		user = User()
-		try:
-			user.save()
-		except:
-			print("OK: Can't save user without email address and password")
-		else:
-			raise Exception("Could save user without email address and password")
-		
 
-	def test_bchaccount_creation(self):
-		raise Exception('Need to create a BCHaccount class!')
+    def setUp(self):
+         ## The only way to create a user is through a form. This form
+        data = {'email'     : 'test@test.com',
+                'password1' : 'hullaballo',
+                'password2' : 'hullaballo'}
+        form = RegisterForm(data=data)
+        self.assertTrue(form.is_valid())
+        user = form.save(commit=False) #don't save the model bound to form, return it
+        user.is_active = False
+        user.save()
+        self.user1 = user
+
+
+    def test_user_creation_email_send(self):
+        user = self.user1
+
+        #Need to make a request
+        #sned_activation_email uses this to get the current domain..
+        request = self.client.get('/')  
+        request.get_host = lambda : 'testserver' #have to add this function. The test request doesn't have it.
+        #Test sending email directly using a function
+        email = send_activation_email(request,user)
+        self.assertEqual(dmail.outbox[0].body,email.body)
+        print(email.body)
+
+        #Test sending email by requesting the url that does so
+        url = get_send_activation_email_url(user)
+        request = self.client.get(url)
+        print(request)
+        print(dmail.outbox[1].body)
+        print(email.body)
+        self.assertEqual(dmail.outbox[1].body,email.body)
+
+    def test_user_creation_confirm_like(self):
+        
+
+
+
+    def test_bchaccount_creation(self):
+        pass
+        #raise Exception('Need to create a BCHaccount class!')
 
 # class ItemModelTest(TestCase):
 #     def test_saving_and_retreiving_items(self):

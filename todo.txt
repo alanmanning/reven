@@ -55,13 +55,5 @@ EVENTUALLY:
 ##############################################
 ##############################################
 
-EMAIL info:
 
-www.mail.com
-Name: Reven reven
-Bday: June 17 1955
-reven_test1
-RevenTest1@
-What city were you born in? -> Athens
-Customer Number329393590
 https://www.lifewire.com/what-are-mail-com-smtp-settings-1170500

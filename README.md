@@ -13,6 +13,10 @@ Weather generally plays the most significant role in energy consumption through 
 This project was a way for me to learn more about web development. Ultimately, I want a website (built using Django) where anyone could have their consumption data analyzed. Technologies I have been playing with are AWS EC2 (for the analysis and downloading), Django, Celery (for running the analysis), and SQL databases.
 
 ### The analysis
+#### References
+This analysis follows Arkadian et al's quite closely.
+
+"Computing Electricity Consumption Profiles from Household Smart Meter Data" by by Omid Ardakanian , Lukasz Golab , Negar Koochakzadeh , S. Keshav , Rayman Preet Singh can be found <a href="http://ceur-ws.org/Vol-1133/paper-22.pdf">here</a>
 #### Inputs
 - Hour by hour consumption data (downloaded from BC Hydro's website using the billing credentials)
 - Hour by house weather data (downloaded from Environment Canada -- eventually will be put in a database)
